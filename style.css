@@ -1,0 +1,88 @@
+
+:root{
+  --bg:#E4DFC9;--ink:#23281A;--muted:#5B5F45;--line:#B9B294;--brass:#8A6B1E;
+  --hd:#2F351F;--hd-ink:#E9E4CC;--hd-line:#4A5230;--gold:#C9A54A;
+  --logo:url("assets/logo-101st.png");
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#1B1F13;--ink:#E6E1C8;--muted:#A5A787;--line:#3A4228;--brass:#C9A54A;--hd:#12150C;--hd-line:#3A4228}
+}
+:root[data-theme="dark"]{--bg:#1B1F13;--ink:#E6E1C8;--muted:#A5A787;--line:#3A4228;--brass:#C9A54A;--hd:#12150C;--hd-line:#3A4228}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.08rem/1.7 "Source Serif 4",Georgia,serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--hd);z-index:30}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+/* Intro */
+#intro{position:fixed;inset:0;z-index:50;background:#12150C;color:#C9D1A0;display:flex;align-items:center;justify-content:center;padding:24px;cursor:pointer;font-family:"Special Elite","Courier New",monospace}
+#intro.off{display:none}
+#intro div{max-width:30rem;width:100%}
+#intro p{margin:.35rem 0;font-size:1.05rem;opacity:0;transition:opacity .4s}
+#intro p.on{opacity:1}
+#intro small{display:block;margin-top:2rem;color:#7C8359;font-size:.85rem}
+
+/* Header */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--hd);color:var(--hd-ink);border-bottom:1px solid var(--hd-line)}
+.bar{max-width:1100px;margin:0 auto;padding:0 18px;display:flex;align-items:center;gap:18px;min-height:56px}
+.brand{display:flex;align-items:center;gap:10px;font-family:"Special Elite",monospace;font-size:1.05rem;text-decoration:none;white-space:nowrap}
+.logo{display:block;flex:none;background:var(--logo) center/contain no-repeat;aspect-ratio:820/1229}
+.brand .logo{height:38px}
+nav{margin-left:auto}
+nav ul{list-style:none;margin:0;padding:0;display:flex;gap:2px;align-items:center}
+nav li{position:relative}
+nav a,nav button{display:block;background:none;border:0;color:inherit;font:inherit;font-size:.95rem;padding:16px 10px;cursor:pointer;text-decoration:none;white-space:nowrap}
+nav a:hover,nav button:hover,nav .cur{color:var(--gold)}
+.sub{display:none;position:absolute;left:0;top:100%;min-width:220px;background:var(--hd);border:1px solid var(--hd-line);padding:6px 0;flex-direction:column}
+.sub a{padding:9px 16px}
+li.open>.sub{display:flex}
+#burger{display:none;margin-left:auto;font-size:1.4rem;padding:10px}
+@media (max-width:900px){
+  #burger{display:block}
+  nav{display:none;position:absolute;left:0;right:0;top:100%;background:var(--hd);border-bottom:1px solid var(--hd-line);max-height:75vh;overflow-y:auto;margin:0}
+  nav.show{display:block}
+  nav ul{flex-direction:column;align-items:stretch;padding:6px 0}
+  nav a,nav button{padding:12px 20px;width:100%;text-align:left}
+  .sub{position:static;border:0;border-left:2px solid var(--hd-line);margin-left:20px;padding:0}
+}
+
+/* Hero */
+.hero{background:var(--hd);color:var(--hd-ink);border-bottom:4px solid var(--gold)}
+.hero .in{max-width:1100px;margin:0 auto;padding:64px 18px 72px;display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:center}
+.logo.big{width:min(230px,42vw);height:auto}
+h1{font:400 clamp(2.4rem,7vw,4.6rem)/1.02 "Special Elite",monospace;margin:0 0 .5rem;letter-spacing:.01em}
+.hero p{margin:0;font-size:clamp(1.1rem,2.4vw,1.4rem);font-style:italic;color:var(--gold)}
+.hero .unit{font:400 1.05rem "Special Elite",monospace;font-style:normal;color:#B8B99C;margin-bottom:1.1rem}
+@media (max-width:640px){.hero .in{grid-template-columns:1fr;gap:28px;padding:40px 18px 48px}}
+
+/* Content */
+main{max-width:1100px;margin:0 auto;padding:56px 18px 72px}
+h2{font:400 1.9rem/1.2 "Special Elite",monospace;margin:0 0 1rem}
+.welcome{max-width:62ch}
+.welcome p{margin:0 0 1rem}
+ul.go{list-style:none;margin:48px 0 0;padding:0;border-top:1px solid var(--line)}
+ul.go li{border-bottom:1px solid var(--line)}
+ul.go a{display:flex;gap:24px;align-items:baseline;padding:18px 4px;text-decoration:none}
+ul.go a:hover b{color:var(--brass)}
+ul.go b{font:400 1.2rem "Special Elite",monospace;min-width:11rem}
+ul.go span{color:var(--muted)}
+@media (max-width:640px){ul.go a{flex-direction:column;gap:2px}}
+footer{border-top:1px solid var(--line);padding:24px 18px;text-align:center;color:var(--muted);font-size:.9rem}
+
+.hero.compact .in{padding:34px 18px 38px;gap:28px}
+.hero.compact .logo.big{width:min(84px,22vw)}
+.hero.compact h1{font-size:clamp(1.8rem,5vw,2.8rem)}
+.hero.compact p{margin-top:.3rem}
+main.doc{max-width:860px}
+main.doc h2{font-size:1.5rem;margin:2.2rem 0 .6rem}
+main.doc>h2:first-child{margin-top:0}
+main.doc p{margin:0 0 1rem}
+main.doc ul,main.doc ol{margin:0 0 1rem;padding-left:1.4rem}
+main.doc li{margin:.3rem 0}
+.tablewrap{overflow-x:auto;margin:1rem 0}
+table{width:100%;border-collapse:collapse;font-size:.98rem}
+th,td{border-bottom:1px solid var(--line);padding:10px 10px 10px 0;text-align:left;vertical-align:top}
+th{font:400 1rem "Special Elite",monospace;color:var(--brass);white-space:nowrap}
+.note{border-left:3px solid var(--gold);padding:.3rem 1rem;color:var(--muted)}
